@@ -17,7 +17,7 @@ This form of the tutorial has been inspired by [rustlings](https://github.com/ru
 Precursors necessary are:
 
 - [protostar](https://docs.swmansion.com/protostar/docs/tutorials/installation)
-- [python 3.7](https://www.python.org/downloads/)
+- [python 3.7](https://www.python.org/downpythin3loads/)
 - [cairo](https://www.cairo-lang.org/docs/quickstart.html)
 
 # Starting autoloader script

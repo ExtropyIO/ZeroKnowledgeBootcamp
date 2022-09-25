@@ -13,6 +13,10 @@ ex_map = {
     "ex5": "./exercises/cairo/ex5.cairo",
     "ex6": "./exercises/cairo/ex6.cairo",   
     "ex7": "./exercises/cairo/ex7.cairo",   
+    "basic": "./exercises/contracts/basic/basic.cairo",
+    "battleship": "./exercises/contracts/battleship/battleship.cairo",
+    "erc20": "./exercises/contracts/erc20/erc20.cairo",
+    "erc721": "./exercises/contracts/erc721/erc721.cairo",    
 }
 
 test_map = {
@@ -22,12 +26,16 @@ test_map = {
     "ex4": "./test/test_ex4.cairo",
     "ex5": "./test/test_ex5.cairo",
     "ex6": "./test/test_ex6.cairo",   
-    "ex7": "./test/test_ex7.cairo",       
+    "ex7": "./test/test_ex7.cairo",   
+    "basic": "./test/test_basic.cairo",
+ "battleship": "./test/test_battleship.cairo",
+    "erc20": "./test/test_erc20.cairo",
+    "erc721": "./test/test_erc721.cairo",     
 }
 
 def check_exercises_finished(exercise_path):
     file_content = (open(exercise_path, "r")).read()   
-    if "// I AM NOT DONE" in file_content: 
+    if "## I AM NOT DONE" in file_content: 
         return False
     else:
         return True
@@ -50,21 +58,20 @@ def get_latest_exercises(set_dir):
 
 ## Set new theme
 def get_new_set():
-      return 1 
-##    user_input = 0
-##    while True:
-##        try:
-##            user_input = int(input("Pick exercises want to work on\n\tcairo programs\t(1)\n\tcairo contracts\t(2)\n"))
-##            if user_input < 4:                
-##                if user_input == 1:
-##                    return 1
-##                elif user_input == 2:
-##                    return 2                
-##        except KeyboardInterrupt:
-##            sys.exit(0)    
-##        except:
-##            print("You need to input a number 1-3")
-##            None
+    user_input = 0
+    while True:
+        try:
+            user_input = int(input("Pick exercises want to work on\n\tcairo programs\t(1)\n\tcairo contracts\t(2)\n"))
+            if user_input < 4:                
+                if user_input == 1:
+                    return 1
+                elif user_input == 2:
+                    return 2                
+        except KeyboardInterrupt:
+            sys.exit(0)    
+        except:
+            print("You need to input a number 1-3")
+            None
 
 def file_hash(file_path):       
     file_content = (open(file_path, "r")).read()   

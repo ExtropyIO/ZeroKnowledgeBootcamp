@@ -8,7 +8,7 @@ from exercises.cairo.ex7 import pattern
 func test_patternt{syscall_ptr: felt*, range_check_ptr, bitwise_ptr: BitwiseBuiltin*}() {
     alloc_locals;
 
-    // # test nice numbers
+   // test nice numbers
     //###############################################################################################
     let (nice_pattern) = pattern(n=170, idx=0, exp=0, broken_chain=0);
     assert nice_pattern = 1;
@@ -22,7 +22,7 @@ func test_patternt{syscall_ptr: felt*, range_check_ptr, bitwise_ptr: BitwiseBuil
     let (nice_pattern) = pattern(n=1398101, idx=0, exp=0, broken_chain=0);
     assert nice_pattern = 1;
 
-    // # test not-nice numbers
+   // test not-nice numbers
     //###############################################################################################
     let (nice_pattern) = pattern(n=17, idx=0, exp=0, broken_chain=0);
     assert nice_pattern = 0;

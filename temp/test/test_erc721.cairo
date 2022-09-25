@@ -13,7 +13,7 @@ from exercises.contracts.erc20.IERC20 import IErc20 as Erc20
 
 @external
 func __setup__() {
-    // # Deploy contract erc721
+   // Deploy contract erc721
     %{
         context.contract_address  = deploy_contract("./exercises/contracts/erc721/erc721.cairo", [
                5338434412023108646027945078640, ## name:   CairoWorkshop
@@ -22,7 +22,7 @@ func __setup__() {
                ]).contract_address
     %}
 
-    // # Deploy contract
+   // Deploy contract
     %{
         context.contract_erc20_address  = deploy_contract("./exercises/contracts/erc20/erc20.cairo", [
                5338434412023108646027945078640, ## name:   CairoWorkshop
@@ -40,22 +40,22 @@ func test_mint{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     tempvar contract_address;
     %{ ids.contract_address = context.contract_address %}
 
-    // # Call as admin
+   // Call as admin
     %{ stop_prank_callable = start_prank(ids.MINT_ADMIN, ids.contract_address) %}
 
-    // # Transfer even amount as mint owner to TEST_ACC1
+   // Transfer even amount as mint owner to TEST_ACC1
     IERC721.mint(contract_address=contract_address, to=TEST_ACC1);
     IERC721.mint(contract_address=contract_address, to=MINT_ADMIN);
     %{ stop_prank_callable() %}
 
-    // # Call as admin
+   // Call as admin
     %{ stop_prank_callable = start_prank(ids.TEST_ACC1, ids.contract_address) %}
 
-    // # Transfer NFT from TEST_ACC1 to TEST_ACC2
+   // Transfer NFT from TEST_ACC1 to TEST_ACC2
     // IERC721.transferFrom(contract_address=contract_address, from_ = TEST_ACC1, to = TEST_ACC2, tokenId = Uint256(0,0))
     %{ stop_prank_callable() %}
 
-    // # Check the counter increases afte two mints
+   // Check the counter increases afte two mints
     let (current_counter) = IERC721.getCounter(contract_address=contract_address);
     assert current_counter.low = 2;
 
@@ -67,14 +67,14 @@ func test_og_owner{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_p
     tempvar contract_address;
     %{ ids.contract_address = context.contract_address %}
 
-    // # Call as admin
+   // Call as admin
     %{ stop_prank_callable = start_prank(ids.MINT_ADMIN, ids.contract_address) %}
 
-    // # Transfer even amount as mint owner to TEST_ACC1
+   // Transfer even amount as mint owner to TEST_ACC1
     IERC721.mint(contract_address=contract_address, to=MINT_ADMIN);
     IERC721.mint(contract_address=contract_address, to=MINT_ADMIN);
 
-    // # Transfer NFT from MINT_ADMIN to TEST_ACC2
+   // Transfer NFT from MINT_ADMIN to TEST_ACC2
     IERC721.transferFrom(
         contract_address=contract_address, from_=MINT_ADMIN, to=TEST_ACC2, tokenId=Uint256(1, 0)
     );
@@ -82,7 +82,7 @@ func test_og_owner{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_p
 
     let (ow) = IERC721.ownerOf(contract_address=contract_address, tokenId=Uint256(1, 0));
 
-    // # Check the OG owner vs current owner of the transfered NFT
+   // Check the OG owner vs current owner of the transfered NFT
     let (original_owner) = IERC721.getOriginalOwner(
         contract_address=contract_address, tokenId=Uint256(1, 0)
     );
@@ -98,24 +98,24 @@ func test_burn_mint{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_
     %{ ids.contract_address = context.contract_address %}
     %{ ids.contract_address_erc20 = context.contract_erc20_address %}
 
-    // # Call as admin erc721 and set burn address
+   // Call as admin erc721 and set burn address
     %{ stop_prank_callable = start_prank(ids.MINT_ADMIN, ids.contract_address) %}
     IERC721.setErc20_pay(contract_address=contract_address, address=contract_address_erc20);
     %{ stop_prank_callable() %}
 
-    // # Call as admin erc20 and send some tokens
+   // Call as admin erc20 and send some tokens
     %{ stop_prank_callable = start_prank(ids.MINT_ADMIN, ids.contract_address_erc20) %}
     Erc20.transfer(
         contract_address=contract_address_erc20, recipient=TEST_ACC2, amount=Uint256(2500, 0)
     );
     %{ stop_prank_callable() %}
 
-    // # Call mintBuy as non-owner
+   // Call mintBuy as non-owner
     %{ stop_prank_callable = start_prank(ids.TEST_ACC2, ids.contract_address) %}
     IERC721.mintBuy(contract_address=contract_address);
     %{ stop_prank_callable() %}
 
-    // # Reverts on call as an account without adequete funds
+   // Reverts on call as an account without adequete funds
     %{ stop_prank_callable = start_prank(ids.TEST_ACC1, ids.contract_address) %}
     %{ expect_revert() %}
     IERC721.mintBuy(contract_address=contract_address);

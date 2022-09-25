@@ -12,10 +12,10 @@ func test_basic{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}
     let (tc_start) = total_customers.read();
     assert 0 = tc_start;
 
-    // # Init struct
+   // Init struct
     let sale_ex = Sale_Details(1, 1, 0);
 
-    // # Call submit_sale
+   // Call submit_sale
     submit_sale(1, 0, 0, add_1, add_2, 2);
 
     let (tc_end) = total_customers.read();

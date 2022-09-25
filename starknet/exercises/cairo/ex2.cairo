@@ -1,9 +1,9 @@
-// # I AM NOT DONE
+// I AM NOT DONE
 
 from starkware.cairo.common.uint256 import Uint256
 
-// # Modify both functions so that they increment
-// # supplied value and return it
+// Modify both functions so that they increment
+// supplied value and return it
 func add_one(y: felt) -> (val: felt) {
     return (y,);
 }

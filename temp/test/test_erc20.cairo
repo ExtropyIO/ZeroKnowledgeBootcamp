@@ -36,7 +36,7 @@ namespace Erc20 {
 
 @external
 func __setup__() {
-    // # Deploy contract
+   // Deploy contract
     %{
         context.contract_a_address  = deploy_contract("./exercises/contracts/erc20/erc20.cairo", [
                5338434412023108646027945078640, ## name:   CairoWorkshop
@@ -49,7 +49,7 @@ func __setup__() {
     return ();
 }
 
-// # Make it so transfer only works on multiples of 2
+// Make it so transfer only works on multiples of 2
 @external
 func test_even_transfer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}() {
     alloc_locals;
@@ -57,13 +57,13 @@ func test_even_transfer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_ch
     tempvar contract_address;
     %{ ids.contract_address = context.contract_a_address %}
 
-    // # Call as admin
+   // Call as admin
     %{ stop_prank_callable = start_prank(ids.MINT_ADMIN, ids.contract_address) %}
 
-    // # Transfer even amount as mint owner to TEST_ACC1
+   // Transfer even amount as mint owner to TEST_ACC1
     Erc20.transfer(contract_address=contract_address, recipient=TEST_ACC1, amount=Uint256(666, 0));
 
-    // # Attempt to transfer an odd amount as mint owner to TEST_ACC1
+   // Attempt to transfer an odd amount as mint owner to TEST_ACC1
     %{ expect_revert() %}
     Erc20.transfer(contract_address=contract_address, recipient=TEST_ACC2, amount=Uint256(111, 0));
     %{ stop_prank_callable() %}
@@ -71,7 +71,7 @@ func test_even_transfer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_ch
     return ();
 }
 
-// # Make a faucet that mints and transfers any value equal to or below 10,000
+// Make a faucet that mints and transfers any value equal to or below 10,000
 @external
 func test_faucet{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}() {
     alloc_locals;
@@ -79,17 +79,17 @@ func test_faucet{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr
     tempvar contract_address;
     %{ ids.contract_address = context.contract_a_address %}
 
-    // # Call as test_acc1
+   // Call as test_acc1
     %{ stop_prank_callable = start_prank(ids.TEST_ACC1, ids.contract_address) %}
 
-    // # Transfer even amount as mint owner to TEST_ACC1
+   // Transfer even amount as mint owner to TEST_ACC1
     Erc20.faucet(contract_address=contract_address, amount=Uint256(666, 0));
     %{ stop_prank_callable() %}
 
-    // # Call as test_acc2
+   // Call as test_acc2
     %{ stop_prank_callable = start_prank(ids.TEST_ACC2, ids.contract_address) %}
 
-    // # Attempt to get airdrop over the limit
+   // Attempt to get airdrop over the limit
     %{ expect_revert() %}
     Erc20.transfer(
         contract_address=contract_address, recipient=TEST_ACC2, amount=Uint256(20000, 0)
@@ -108,28 +108,28 @@ func test_burn_haircut{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_che
 
     let (admin_address) = Erc20.get_admin(contract_address=contract_address);
 
-    // # Start admin balance
+   // Start admin balance
     let (start_admin_balance) = Erc20.balanceOf(
         contract_address=contract_address, account=MINT_ADMIN
     );
 
-    // # Call as test_acc1
+   // Call as test_acc1
     %{ stop_prank_callable = start_prank(ids.TEST_ACC1, ids.contract_address) %}
 
-    // # Get airdrop
+   // Get airdrop
     Erc20.faucet(contract_address=contract_address, amount=Uint256(666, 0));
 
-    // # Call burn
+   // Call burn
     Erc20.burn(contract_address=contract_address, amount=Uint256(500, 0));
 
     %{ stop_prank_callable() %}
 
-    // # Final admin balance
+   // Final admin balance
     let (final_admin_balance) = Erc20.balanceOf(
         contract_address=contract_address, account=MINT_ADMIN
     );
 
-    // # Assert admin's balance increased by 50
+   // Assert admin's balance increased by 50
     let (admin_diff) = uint256_sub(final_admin_balance, start_admin_balance);
     assert admin_diff.low = 50;
 
@@ -143,38 +143,38 @@ func test_exclusive_faucet{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range
     tempvar contract_address;
     %{ ids.contract_address = context.contract_a_address %}
 
-    // # Start admin balance
+   // Start admin balance
     let (start_TEST_ACC1_balance) = Erc20.balanceOf(
         contract_address=contract_address, account=TEST_ACC1
     );
 
-    // # Call as test_acc1
+   // Call as test_acc1
     %{ stop_prank_callable = start_prank(ids.TEST_ACC1, ids.contract_address) %}
 
-    // # Ensure TEST_ACC1 is not on the whitelist by defualt
+   // Ensure TEST_ACC1 is not on the whitelist by defualt
     let (allowed) = Erc20.check_whitelist(contract_address=contract_address, account=TEST_ACC1);
     assert allowed = 0;
 
-    // # Apply to get on the whitelist
+   // Apply to get on the whitelist
     let (apply) = Erc20.request_whitelist(contract_address=contract_address);
     assert apply = 1;
 
-    // # Ensure TEST_ACC1 is now on the whitelist by defualt
+   // Ensure TEST_ACC1 is now on the whitelist by defualt
     let (allowed) = Erc20.check_whitelist(contract_address=contract_address, account=TEST_ACC1);
     assert allowed = 1;
 
-    // # Call exclusive_faucet asking for more than 10,000
+   // Call exclusive_faucet asking for more than 10,000
     let (allowed) = Erc20.exclusive_faucet(
         contract_address=contract_address, amount=Uint256(200000, 0)
     );
     %{ stop_prank_callable() %}
 
-    // # Final admin balance
+   // Final admin balance
     let (final_TEST_ACC1_balance) = Erc20.balanceOf(
         contract_address=contract_address, account=TEST_ACC1
     );
 
-    // # Assert admin's balance increased by 50
+   // Assert admin's balance increased by 50
     let (admin_diff) = uint256_sub(final_TEST_ACC1_balance, start_TEST_ACC1_balance);
     assert admin_diff.low = 200000;
 

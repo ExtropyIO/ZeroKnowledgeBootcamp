@@ -33,7 +33,7 @@ from exercises.contracts.erc20.ERC20_base import (
 func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     name: felt, symbol: felt, initial_supply: Uint256, admin: felt
 ) {
-    ERC20_initializer(name, symbol, initial_supply, recipient);
+    ERC20_initializer(name, symbol, initial_supply, admin);
     admin.write(admin);
     return ();
 }

@@ -90,11 +90,25 @@ func test_burn_haircut{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_che
 
     // Get airdrop
     Erc20.faucet(contract_address=contract_address, amount=Uint256(666, 0));
+    
+    // Start user balance
+    let (start_user_balance) = Erc20.balanceOf(
+        contract_address=contract_address, account=TEST_ACC1
+    );
 
     // Call burn
     Erc20.burn(contract_address=contract_address, amount=Uint256(500, 0));
     %{ stop_prank_callable() %}
+    
+    // Final user balance
+    let (final_user_balance) = Erc20.balanceOf(
+        contract_address=contract_address, account=TEST_ACC1
+    );
 
+    // Assert user's balance decreased by 500
+    let (user_diff) = uint256_sub( start_user_balance, final_user_balance);
+    assert user_diff.low = 500;
+    
     // Final admin balance
     let (final_admin_balance) = Erc20.balanceOf(
         contract_address=contract_address, account=MINT_ADMIN

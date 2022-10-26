@@ -31,10 +31,10 @@ from exercises.contracts.erc20.ERC20_base import (
 
 @constructor
 func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
-    name: felt, symbol: felt, initial_supply: Uint256, admin: felt
+    name: felt, symbol: felt, initial_supply: Uint256, recipient: felt
 ) {
     ERC20_initializer(name, symbol, initial_supply, recipient);
-    admin.write(admin);
+    admin.write(recipient);
     return ();
 }
 

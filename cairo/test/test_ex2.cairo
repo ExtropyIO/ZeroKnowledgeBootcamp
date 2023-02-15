@@ -16,8 +16,10 @@ func test_add_one{syscall_ptr: felt*, range_check_ptr}() {
 func test_add_one_U256{syscall_ptr: felt*, range_check_ptr}() {
     let (r) = add_one_U256(Uint256(4, 0));
     assert r.low = 5;
+    assert r.high = 0;
 
     let (r) = add_one_U256(Uint256(88, 0));
     assert r.low = 89;
+    assert r.high = 0;
     return ();
 }

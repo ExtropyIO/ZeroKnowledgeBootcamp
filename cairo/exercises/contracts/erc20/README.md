@@ -6,6 +6,8 @@ Several features need to be added to improve existing functionality.
 
 Tests will run against any implementations.
 
+**Warning**: Test are going to show compilation errors at the beggning. You have to fix it.
+
 You should modify **ONLY** the file `erc20.cairo` in `exercises/contracts/`.
 
 If a feature is complete, run again to see the test output:

@@ -2,7 +2,6 @@
 
 ## To run
 
-`cd src`
 `npm install --legacy-peers-deps`
 
 `npm start`

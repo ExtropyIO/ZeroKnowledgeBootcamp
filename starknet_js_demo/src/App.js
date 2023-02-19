@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from "react"
 import { connect } from "get-starknet"
 import { Contract } from "starknet"
-import { toBN } from "starknet/dist/utils/number"
+import { number } from "starknet"
 
 import contractAbi from "./contract_abi.json"
 
@@ -55,7 +55,7 @@ function App() {
       // call the function
       const _bal = await contract.get_balance()
       // decode the result
-      const _decodedBalance = toBN(_bal.res, 16).toString()
+      const _decodedBalance = number.toBN(_bal.res, 16).toString()
       // display the result
       setRetrievedBalance(_decodedBalance)
     }

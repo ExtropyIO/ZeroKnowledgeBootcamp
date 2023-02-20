@@ -68,7 +68,7 @@ function App() {
       <header className="App-header">
         <main className="main">
           <h1 className="title">
-            Minimal Starknet JS DEMO
+            Minimal Starknet.js demo
           </h1>
           {
             isConnected ?
@@ -77,18 +77,14 @@ function App() {
           }
 
           <p className="description">
-            Using Starknet JS with a simple contract
+            Use alpha4.starknet.io testnet
           </p>
 
           <div className="grid">
             <div href="#" className="card">
-              <h2>Use Alpha-goerli test net! &rarr;</h2>
-
 
               <div className="cardForm">
-                {/* <input type="text" className="input" placeholder="Enter Name" onChange={(e) => setName(e.target.value)} /> */}
-
-                <input type="submit" className="button" value="Add ETH  " onClick={() => increaseBalanceFunction()} />
+                <input type="submit" className="button" value="Increase balance" onClick={() => increaseBalanceFunction()} />
               </div>
 
               <hr />
@@ -96,9 +92,9 @@ function App() {
               {/* <p>Insert a wallet address, to retrieve its name.</p> */}
               <div className="cardForm">
                
-                <input type="submit" className="button" value="Get Balance " onClick={() => getBalanceFunction()} />
+                <input type="submit" className="button" value="Get balance" onClick={() => getBalanceFunction()} />
               </div>
-              <p>Balance: {retrievedBalance} ETH</p>
+              <p>Contract balance: {retrievedBalance}</p>
             </div>
           </div>
         </main>

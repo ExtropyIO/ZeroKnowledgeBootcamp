@@ -13,7 +13,7 @@ hint = """"""
 
 [[exercises]]
 name = "const"
-path = "exercises/const.cairo"
+path = "exercises/constants.cairo"
 mode = "compile"
 hint = """
 Please check what Cairo Book says about constants https://cairo-book.github.io/ch02-01-variables-and-mutability.html#constants and data types https://cairo-book.github.io/ch02-02-data-types.html

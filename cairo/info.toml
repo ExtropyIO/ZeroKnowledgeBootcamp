@@ -1,19 +1,19 @@
 [[exercises]]
 name = "main"
-path = "fox/main.cairo"
+path = "homeworks/main.cairo"
 mode = "compile"
 hint = """
 Cairo 1 programs require `main` method to compile"""
 
 [[exercises]]
 name = "mul"
-path = "fox/mul.cairo"
+path = "homeworks/mul.cairo"
 mode = "compile"
 hint = """"""
 
 [[exercises]]
 name = "const"
-path = "fox/const.cairo"
+path = "homeworks/const.cairo"
 mode = "compile"
 hint = """
 Please check what Cairo Book says about constants https://cairo-book.github.io/ch02-01-variables-and-mutability.html#constants and data types https://cairo-book.github.io/ch02-02-data-types.html
@@ -21,19 +21,19 @@ Please check what Cairo Book says about constants https://cairo-book.github.io/c
 
 [[exercises]]
 name = "short_strings"
-path = "fox/short_strings.cairo"
+path = "homeworks/short_strings.cairo"
 mode = "compile"
 hint = """"""
 
 [[exercises]]
 name = "tuple"
-path = "fox/tuple.cairo"
+path = "homeworks/tuple.cairo"
 mode = "compile"
 hint = """"""
 
 [[exercises]]
 name = "conversions"
-path = "fox/conversions.cairo"
+path = "homeworks/conversions.cairo"
 mode = "test"
 hint = """
 If you try to sum two integers and the result is bigger than the biggest integer of this type, you'll get a compilation error.

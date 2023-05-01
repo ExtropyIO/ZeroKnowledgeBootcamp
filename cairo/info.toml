@@ -1,0 +1,45 @@
+[[exercises]]
+name = "main"
+path = "exercises/main.cairo"
+mode = "compile"
+hint = """
+Cairo 1 programs require `main` method to compile"""
+
+[[exercises]]
+name = "mul"
+path = "exercises/mul.cairo"
+mode = "compile"
+hint = """"""
+
+[[exercises]]
+name = "const"
+path = "exercises/constants.cairo"
+mode = "compile"
+hint = """
+Please check what Cairo Book says about constants https://cairo-book.github.io/ch02-01-variables-and-mutability.html#constants and data types https://cairo-book.github.io/ch02-02-data-types.html
+"""
+
+[[exercises]]
+name = "short_strings"
+path = "exercises/short_strings.cairo"
+mode = "compile"
+hint = """"""
+
+[[exercises]]
+name = "tuple"
+path = "exercises/tuple.cairo"
+mode = "compile"
+hint = """"""
+
+[[exercises]]
+name = "conversions"
+path = "exercises/conversions.cairo"
+mode = "test"
+hint = """
+If you try to sum two integers and the result is bigger than the biggest integer of this type, you'll get a compilation error.
+You can convert integers to felts using the `.into()` method. Make sure that you imported the `Into` trait.
+You can convert felts to integers using the `.try_into()` method. Make sure that you imported the `TryInto` trait.
+This method will return an `Option` type, so you'll need to unwrap it. To use the `unwrap()` method, you'll need to import the `OptionTrait` trait.
+Take a look at the top of the file to see how these traits are imported.
+Reference: https://cairo-book.github.io/ch02-02-data-types.html#type-casting
+"""

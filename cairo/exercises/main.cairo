@@ -1,4 +1,5 @@
 // This exercise won't compile... Can you make it compile?
-// Execute `starklings hint main` or use the `hint` watch subcommand for a hint.
+
+// Type `hint` in watch mode for a hint.
 
 // I AM NOT DONE

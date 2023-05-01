@@ -1,4 +1,4 @@
-// Execute `starklings hint const` or use the `hint` watch subcommand for a hint.
+// Type `hint` in watch mode for a hint.
 
 // I AM NOT DONE
 

@@ -1,6 +1,7 @@
 // Modify the integer types to make the tests pass.
 // Learn how to convert between integer types, and felts.
-// Execute `starklings hint conversions` or use the `hint` watch subcommand for a hint.
+
+// Type `hint` in watch mode for a hint.
 
 // I AM NOT DONE
 

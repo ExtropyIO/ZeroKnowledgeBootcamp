@@ -5,8 +5,7 @@
 use debug::PrintTrait;
 
 const TOO_HARD = false;
-const NUMBER = 3_u8;
+const NUMBER = 3;
 fn main() {
-    TOO_HARD.print();
     NUMBER.print();
 }

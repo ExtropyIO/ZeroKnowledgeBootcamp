@@ -540,22 +540,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f497285884f3fcff424ffc933e56d7cbca511def0c9831a7f9b5f6153e3cc89b"
 
 [[package]]
-name = "zustlings"
-version = "4.7.0"
-dependencies = [
- "argh",
- "assert_cmd",
- "console 0.7.7",
- "glob",
- "indicatif",
- "notify",
- "predicates",
- "regex",
- "serde",
- "toml",
-]
-
-[[package]]
 name = "ryu"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -744,4 +728,20 @@ checksum = "d59cefebd0c892fa2dd6de581e937301d8552cb44489cdff035c6187cb63fa5e"
 dependencies = [
  "winapi 0.2.8",
  "winapi-build",
+]
+
+[[package]]
+name = "zustlings"
+version = "4.7.0"
+dependencies = [
+ "argh",
+ "assert_cmd",
+ "console 0.7.7",
+ "glob",
+ "indicatif",
+ "notify",
+ "predicates",
+ "regex",
+ "serde",
+ "toml",
 ]

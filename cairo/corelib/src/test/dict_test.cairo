@@ -1,4 +1,6 @@
-use dict::Felt252DictTrait;
+use box::BoxTrait;
+use dict::{Felt252DictTrait, Felt252DictEntryTrait};
+use nullable::NullableTrait;
 use traits::Index;
 
 #[test]
@@ -33,6 +35,51 @@ fn test_dict_write_read() {
     assert(val12 == 0, 'default_val == 0');
 }
 
+#[test]
+fn test_dict_entry() {
+    // TODO(Gil): remove type annotation once dict index is fixed.
+    let mut dict: Felt252Dict<felt252> = Felt252DictTrait::new();
+    dict.insert(10, 110);
+    let (entry, value) = dict.entry(10);
+    assert(value == 110, 'dict[10] == 110');
+    let mut dict = entry.finalize(11);
+    assert(dict[10] == 11, 'dict[10] == 11');
+}
+
+#[test]
+fn test_dict_entry_uninitialized() {
+    let mut dict: Felt252Dict<felt252> = Felt252DictTrait::new();
+    let (entry, value) = dict.entry(10);
+    assert(value == 0_felt252, 'dict[10] == 0');
+    let mut dict = entry.finalize(110);
+    assert(dict[10] == 110, 'dict[10] == 110');
+}
+
+#[test]
+fn test_dict_update_twice() {
+    let mut dict: Felt252Dict<felt252> = Felt252DictTrait::new();
+    dict.insert(10, 110);
+    let (entry, value) = dict.entry(10);
+    assert(value == 110, 'dict[10] == 110');
+    dict = entry.finalize(11);
+    assert(dict[10] == 11, 'dict[10] == 11');
+    let (entry, value) = dict.entry(10);
+    assert(value == 11, 'dict[10] == 11');
+    dict = entry.finalize(12);
+    assert(dict[10] == 12, 'dict[10] == 12');
+}
+
+
+/// Tests the destruction of a non-finalized `Felt252DictEntry`.
+///
+/// Calls the destructor of the entry, which in turn calls the destructor of the `Felt252Dict`.
+#[test]
+fn test_dict_entry_destruct() {
+    let mut dict: Felt252Dict<felt252> = Felt252DictTrait::new();
+    dict.insert(10, 110);
+    let (entry, value) = dict.entry(10);
+}
+
 const KEY1: felt252 = 10;
 const KEY2: felt252 = 21;
 // KEY3 is ~37% * PRIME.
@@ -61,3 +108,35 @@ fn test_dict_big_keys() {
     assert(dict.index(KEY4) == 4, 'KEY4');
     assert(dict.index(KEY5) == 5, 'KEY5');
 }
+
+#[test]
+fn test_dict_of_nullable() {
+    let mut dict = Felt252DictTrait::new();
+    dict.insert(10, nullable_from_box(BoxTrait::new(1)));
+    dict.insert(11, nullable_from_box(BoxTrait::new(2)));
+    // TODO(spapini): Use indexing operator.
+    let val10 = dict.index(10).deref();
+    let val11 = dict.index(11).deref();
+    let val12 = dict.index(12);
+    assert(val10 == 1, 'dict[10] == 1');
+    assert(val11 == 2, 'dict[11] == 2');
+    assert(
+        match nullable::match_nullable(val12) {
+            nullable::FromNullableResult::Null(()) => true,
+            nullable::FromNullableResult::NotNull(_) => false,
+        },
+        'default_val == null'
+    );
+}
+// TODO(lior): Re-enable the test once Dict of bools are supported.
+// #[test]
+// fn test_bool_dict() {
+//     let mut bool_dict: Felt252Dict<bool> = Felt252DictTrait::new();
+//     let squashed_dict = bool_dict.squash();
+//     let mut bool_dict: Felt252Dict<bool> = Felt252DictTrait::new();
+//     assert(!bool_dict.get(0), 'default_val != false');
+//     bool_dict.insert(1, true);
+//     assert(bool_dict.get(1), 'bool_dict[1] != true');
+// }
+
+

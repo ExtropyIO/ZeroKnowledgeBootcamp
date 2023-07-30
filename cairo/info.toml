@@ -1,0 +1,66 @@
+# Intro
+[[exercises]]
+name = "main"
+path = "exercises/main.cairo"
+mode = "compile"
+hint = """
+No hints this time ;)
+"""
+
+
+# Variable
+
+[[exercises]]
+name = "constants"
+path = "exercises/constants.cairo"
+mode = "compile"
+hint = """
+We know about variables and mutability, but there is another important type of
+variable available: constants.
+Constants are always immutable and they are declared with keyword 'const' rather
+than keyword 'let'.
+Constants types must also always be annotated.
+You can read about the constants here: https://cairo-book.github.io/ch02-01-variables-and-mutability.html?highlight=const#constants
+"""
+
+
+[[exercises]]
+name = "short_string"
+path = "exercises/short_string.cairo"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "tuple"
+path = "exercises/tuple.cairo"
+mode = "compile"
+hint = """
+You'll need to make a pattern to bind `name` and `age` to the appropriate parts
+of the tuple.
+If you're familiar with Rust, you should know that Cairo has a similar syntax to 
+destructure tuples into multiple variables.
+https://cairo-book.github.io/ch02-02-data-types.html?highlight=destructu#the-tuple-type
+You can do it!!
+"""
+
+[[exercises]]
+name = "conversions"
+path = "exercises/conversions.cairo"
+mode = "test"
+hint = """
+There are multiple integer types in Cairo. You can read about them here:
+https://cairo-book.github.io/ch02-02-data-types.html#integer-types
+If you try to sum two integers and the result is bigger than the biggest integer of this type, you'll get a compilation error.
+You can convert integers to felts using the `.into()` method. Make sure that you imported the `Into` trait.
+You can convert felts to integers using the `.try_into()` method. Make sure that you imported the `TryInto` trait.
+This method will return an `Option` type, so you'll need to unwrap it. To use the `unwrap()` method, you'll need to import the `OptionTrait` trait.
+Take a look at the top of the file to see how these traits are imported.
+"""
+
+# OPERATIONS
+
+[[exercises]]
+name = "operations"
+path = "exercises/operations.cairo"
+mode = "test"
+hint = """Use % for modulus, / for division, and * for multiplication."""

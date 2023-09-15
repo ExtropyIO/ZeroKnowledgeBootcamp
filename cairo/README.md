@@ -33,10 +33,10 @@ With rustup `curl https://sh.rustup.rs -sSf | sh -s`
 ## Start at a specific exercise `NEW`
 
 To start watch at a specific exercise pass the name of the exercise to watch command.
-For example, to start at `starknet1`,
+For example, to start at `conversions`,
 
 ```
-cargo run --bin starklings watch starknet1
+cargo run --bin starklings watch conversions
 ```
 
 ## Welcome message and instrucitons
@@ -83,7 +83,7 @@ In order to have syntax highlighting and language server features, you will need
 
 ## Inspiration
 
--   [Rustlings](https://github.com/rust-lang/rustlings), starklings is forked from Rustlings. Thanks to all the original [authors and contributors](https://github.com/rust-lang/rustlings)
+- [Rustlings](https://github.com/rust-lang/rustlings), starklings is forked from Rustlings. Thanks to all the original [authors and contributors](https://github.com/rust-lang/rustlings)
 
 ## Testing
 
@@ -114,13 +114,13 @@ We have 2 active branches,
 
 1. New exercises can be added in `./exercises` directory.
 2. Insert information about the exercise in `./info.toml` file. For example
-    ```toml
-    [[exercises]]
-    name = "new_exercise"
-    path = "exercises/new_module/new_exercise.cairo"
-    mode = "compile" # or "test"
-    hint = """"""
-    ```
+   ```toml
+   [[exercises]]
+   name = "new_exercise"
+   path = "exercises/new_module/new_exercise.cairo"
+   mode = "compile" # or "test"
+   hint = """"""
+   ```
 3. Check that the [tests](#testing) pass.
 4. Send your PR to `dev` branch of the repo!
 

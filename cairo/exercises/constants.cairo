@@ -10,3 +10,4 @@ fn main() {
     NUMBER.print();
     SMALL_NUMBER.print();
 }
+

@@ -33,10 +33,10 @@ With rustup `curl https://sh.rustup.rs -sSf | sh -s`
 ## Start at a specific exercise `NEW`
 
 To start watch at a specific exercise pass the name of the exercise to watch command.
-For example, to start at `operations`,
+For example, to start at `conversions`,
 
 ```
-cargo run --bin starklings watch operations
+cargo run --bin starklings watch conversions
 ```
 
 ## Welcome message and instrucitons
